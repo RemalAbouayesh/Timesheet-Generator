@@ -21,6 +21,12 @@ namespace HardRockTimesheetsGenerator.Controllers
         {
             try
             {
+                //Check End date is greater than Start date
+                if(model.EndDate<= model.StartDate)
+                {
+                    ModelState.AddModelError("EndDate", "End date should be greater than Start date");
+                }
+
                 //If invalid, return to view
                 if (!ModelState.IsValid)
                 {
