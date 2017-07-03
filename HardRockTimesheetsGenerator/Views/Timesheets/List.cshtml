@@ -1,0 +1,52 @@
+﻿@model HardRockTimesheetsGenerator.Models.ListTimesheetsModel
+
+<div class="row">
+    @Html.ActionLink("Return to form", "Create", "Timesheets")
+</div>
+<br />
+    @if (Model == null || (Model.Timesheets == null || !Model.Timesheets.Any()))
+    {
+        <div>No timesheets found.</div>
+    }
+    else
+    {
+        int index = 1;
+        foreach (var timesheet in Model.Timesheets)
+        {
+            <div class="row">
+                <div class="col-md-4">
+                    <b>Candidate name:</b>@Model.CandidateName &nbsp;
+                    <b>Client name:</b>@Model.ClientName&nbsp;
+                </div>
+            </div>
+            <div class="row">
+                <b>Job title:</b>@Model.JobTitle
+            </div>
+            <div class="row">
+                <b> @Model.PlacementTypeName @index</b>
+            </div>
+            <br />
+            <div class="row">
+                <table class="table-bordered" style="width:600px">
+                    <tr>
+                        <th>Day</th>
+                        <th>Date</th>
+                        <th>Task</th>
+                        <th>Hours</th>
+                    </tr>
+                    @foreach (var day in timesheet.Days)
+                    {
+                        <tr>
+                            <td width="100px">@day.DayOfWeek</td>
+                            <td width="150px">@day.ToString("dd MMMM yyyy")</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <br />
+            <br />
+            index = index + 1;
+        }
+    }

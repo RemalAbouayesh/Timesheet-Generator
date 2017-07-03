@@ -1,0 +1,55 @@
+﻿@model HardRockTimesheetsGenerator.Models.CreateTimesheetsModel
+
+@using (Html.BeginForm("Create", "Timesheets", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="row">
+        <div class="form-group">
+            <h2>Hard Rock timesheets generator</h2>
+        </div>
+    </div>
+    if (ViewBag.ErrorMessage != null)
+    {
+        <div id="general-error">
+            @ViewBag.ErrorMessage
+        </div>
+    }
+        <div class="row">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.CandidateName, new { Placeholder = "Candidate name", @class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.CandidateName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.ClientName, new { Placeholder = "Client name", @class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.ClientName)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.JobTitle, new { Placeholder = "Job title", @class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.JobTitle)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-xs-4">
+                @Html.TextBoxFor(m => m.StartDate, new { Placeholder = "Start date 01/01/2017", @class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.StartDate)
+            </div>
+            <div class="form-group col-xs-4">
+                @Html.TextBoxFor(m => m.EndDate, new { Placeholder = "End date 30/01/2017", @class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.EndDate)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.EnumDropDownListFor(m => m.PlacementType,"Placement Type", new {@class = "form-control input-group-lg" })
+                @Html.ValidationMessageFor(model => model.PlacementType)
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Generate timesheets" class="btn btn-primary btn-lg" />
+            </div>
+        </div>
+        }
